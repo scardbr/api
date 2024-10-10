@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const allowedOrigins = ['https://eot-b7d811.webflow.io', 'https://employee-ownership.ca'];
+  const allowedOrigins = ['https://eot-b7d811.webflow.io', 'https://www.employee-ownership.ca'];
   const origin = req.headers.origin;
 
   // Verificar si el origen de la solicitud está permitido
@@ -7,13 +7,17 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
 
-  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   // Manejar preflight request (CORS OPTIONS)
   if (req.method === 'OPTIONS') {
+    // Responder a la solicitud preflight con los encabezados necesarios
+    res.setHeader('Access-Control-Allow-Origin', origin); // Incluir origin permitido
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.status(200).end();
-    return;
+    return; // Terminar la ejecución aquí para solicitudes OPTIONS
   }
 
   if (req.method === 'POST') {
