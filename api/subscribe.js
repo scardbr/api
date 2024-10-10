@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const allowedOrigins = ['https://eot-b7d811.webflow.io', 'https://www.employee-ownership.ca'];
+  const allowedOrigins = ['https://eot-b7d811.webflow.io', 'https://www.employee-ownership.ca', 'https://employee-ownership.ca'];
   const origin = req.headers.origin;
 
   // Verificar si el origen de la solicitud está permitido
